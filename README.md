@@ -16,9 +16,9 @@ A user should be able to do the following:
 
 Dillinger uses a number of open source projects to work properly:
 
-- [Postgres](https://www.postgresql.org/) - HTML enhanced for web apps!
-- [Node.js](https://nodejs.org/en/) - backend
-- [Express](http://expressjs.com/) - node.js network app framework
+- [Postgres](https://www.postgresql.org/) - Database
+- [Node.js](https://nodejs.org/en/) - Backend server
+- [Express](http://expressjs.com/) - Node.js network app framework
 
 ## Installation
 
