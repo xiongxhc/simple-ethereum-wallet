@@ -1,7 +1,7 @@
 # simple-ethereum-wallet
 
-Create an API which allows users to register with a username and password. 
-It should assign them a unique generated ethereum address just as a centralized exchange does. 
+Create an API which allows users to register with a username and password.
+It should assign them a unique generated ethereum address just as a centralized exchange does.
 The user can send funds to the address using the blockchain - ether or tokens (e.g. USDC).
 
 ### Features
