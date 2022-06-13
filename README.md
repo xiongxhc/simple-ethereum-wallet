@@ -14,13 +14,13 @@ A user should be able to do the following:
 
 ## Tech
 
-Dillinger uses a number of open source projects to work properly:
-
 - [Postgres](https://www.postgresql.org/) - Database
 - [Node.js](https://nodejs.org/en/) - Backend server
 - [Express](http://expressjs.com/) - Node.js network app framework
 
 ## Installation
+
+Make sure to install **Postgres** and update `config/database.config.ts` accordingly.
 
 Install the dependencies and devDependencies and start the server.
 
