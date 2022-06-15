@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/xiongxhc/simple-ethereum-wallet#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "2.8.5",
     "express": "4.18.1",
     "pg": "8.7.3",
@@ -28,6 +29,7 @@
     "sqlite3": "^5.0.8"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "2.8.12",
     "@types/express": "4.17.13",
     "@types/node": "17.0.41",
