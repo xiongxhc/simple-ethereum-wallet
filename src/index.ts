@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { database } from "../database"
+import { database } from "../database";
 import { routes } from "./api/routes";
 
 const app = express();
@@ -20,7 +20,6 @@ routes(app);
 // TODO: Get username and address
 
 // TODO: Get etherum balance and a specific token
-
 
 const PORT = 3000;
 app.listen(PORT, () => {

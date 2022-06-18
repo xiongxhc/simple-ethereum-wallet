@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
 );
 
 export const database = {
-    sequelize,
-    Sequelize,
-    User
-}
+  sequelize,
+  Sequelize,
+  User,
+};

@@ -1,25 +1,25 @@
 import { Sequelize, DataTypes } from "sequelize";
-const sequelize = new Sequelize('sqlite::memory:');
+const sequelize = new Sequelize("sqlite::memory:");
 
-export const User = sequelize.define('User', {
+export const User = sequelize.define("User", {
   uid: {
     type: DataTypes.UUIDV4,
-    allowNull: false
+    allowNull: false,
   },
   username: {
     type: DataTypes.CHAR(50),
-    allowNull: false
+    allowNull: false,
   },
   password: {
-    type: DataTypes.CHAR(50),
-    allowNull: false
+    type: DataTypes.CHAR(255),
+    allowNull: false,
   },
   eth_address: {
     type: DataTypes.CHAR(255),
-    allowNull: false
+    allowNull: false,
   },
   created_on: {
     type: DataTypes.DATE,
-    allowNull: false
-  }
+    allowNull: false,
+  },
 });
