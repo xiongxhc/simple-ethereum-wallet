@@ -1,19 +1,15 @@
 class BaseError extends Error {
   public readonly name: string;
-  public readonly isOperational: boolean;
 
-  constructor(name: string, description: string) {
-    super(description);
+  constructor(name: string) {
+    super(name);
     this.name = name;
     Error.captureStackTrace(this);
   }
 }
 
-export class DatabaseInsertError extends BaseError {
-  constructor(
-    name = "DatabaseInsertError",
-    description = "Database Insert Error"
-  ) {
-    super(name, description);
+export class APIError extends BaseError {
+  constructor(name = "DatabaseInsertError") {
+    super(name);
   }
 }

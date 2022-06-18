@@ -1,13 +1,13 @@
 import { Router, Express } from "express";
 import healthCheck from "./api-health-check";
-import registerUser from "./api-register-user";
+import user from "./api-user";
 
 export const routes = (app: Express) => {
   const router = Router();
 
   router.get("/", healthCheck.get);
 
-  router.post("/register", registerUser.post);
+  router.post("/user", user.post);
 
   app.use("/api", router);
 };

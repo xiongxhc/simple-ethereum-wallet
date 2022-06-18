@@ -1,14 +1,16 @@
-import { Sequelize, DataTypes } from "sequelize";
+import { Sequelize, DataTypes, UUID, UUIDV4 } from "sequelize";
 const sequelize = new Sequelize("sqlite::memory:");
 
-export const User = sequelize.define("User", {
-  uid: {
-    type: DataTypes.UUIDV4,
-    allowNull: false,
+export const USER_TABLE = sequelize.define("users", {
+  id: {
+    type: UUID,
+    defaultValue: UUIDV4,
+    primaryKey: true,
   },
   username: {
     type: DataTypes.CHAR(50),
     allowNull: false,
+    unique: true,
   },
   password: {
     type: DataTypes.CHAR(255),
@@ -19,7 +21,7 @@ export const User = sequelize.define("User", {
     allowNull: false,
   },
   created_on: {
-    type: DataTypes.DATE,
+    type: DataTypes.NUMBER,
     allowNull: false,
   },
 });

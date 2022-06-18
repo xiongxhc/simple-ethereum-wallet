@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
 import { database } from "../database";
 import { routes } from "./api/routes";
@@ -10,7 +10,15 @@ app.use(cors());
 app.use(express.json());
 
 // Sequelize
-database.sequelize.sync();
+try {
+  database.sequelize.sync();
+  database.sequelize.authenticate();
+  console.log(">>>>> Database connection has been established successfully");
+  database.USER_TABLE.sync();
+  console.log(">>>>> Tables created successfully");
+} catch (error) {
+  console.error("Unable to connect to the database:", error);
+}
 
 // Routes
 routes(app);

@@ -1,6 +1,6 @@
 import { Sequelize, Dialect } from "sequelize";
 import { databseConfig } from "../config/database.config";
-import { User } from "./model/user.model";
+import { USER_TABLE } from "./model/user.model";
 
 const sequelize = new Sequelize(
   databseConfig.database,
@@ -14,6 +14,5 @@ const sequelize = new Sequelize(
 
 export const database = {
   sequelize,
-  Sequelize,
-  User,
+  USER_TABLE,
 };

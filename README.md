@@ -20,11 +20,28 @@ A user should be able to do the following:
 
 ## Installation
 
-Make sure to install **Postgres** and update `config/database.config.ts` accordingly.
-
 Install the dependencies and devDependencies and start the server.
 
 ```sh
 pnpm i
-pnpm run dev
+npm run dev
+```
+
+## Test
+
+To run all test case
+
+```sh
+npm run dev
+npm run test
+```
+
+## Curls to try
+
+**POST** Register User
+
+```sh
+curl -X POST -H "Content-Type: application/json" \
+    -d '{"username": "chris", "password": "123456"}' \
+    http://localhost:3000/api/user
 ```

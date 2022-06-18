@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { database } from "../../database";
 import { encrypt } from "../utils/encryption";
-import { DatabaseInsertError } from "../utils/error";
+import { APIError } from "../utils/error";
 import { unhandledException } from "../utils/unhandledException";
 
 const registerUser = async (req: Request, res: Response) => {
@@ -18,19 +18,19 @@ const registerUser = async (req: Request, res: Response) => {
       created_on: new Date().getTime(),
     };
 
-    // TODO: Insert data to database
-    const user = await database.User.create(data);
+    // Insert data to database
+    const user = await database.USER_TABLE.create(data);
     if (user) {
       return res.status(200).json({ username, eth_address });
     }
-    throw new DatabaseInsertError(`Fail to register user: ${username}`);
+    throw new APIError(`Fail to register user: ${username}`);
   } catch (err) {
-    if (err instanceof DatabaseInsertError) {
+    if (err instanceof APIError) {
       return res.status(500).json({
         message: err.message,
       });
     }
-    return unhandledException(req, res);
+    return unhandledException(err, req, res);
   }
 };
 
