@@ -7,8 +7,7 @@ export interface encryptParams {
 
 export interface matchEncryptParams {
   str: string;
-  encryptStr: string;
-  salt?: string;
+  hash: string;
 }
 
 export const encrypt = ({
@@ -18,9 +17,6 @@ export const encrypt = ({
   return bcrypt.hashSync(str, salt);
 };
 
-export const matchEncrypt = ({
-  str,
-  encryptStr,
-}: matchEncryptParams): boolean => {
-  return bcrypt.compareSync(str, encryptStr);
+export const matchEncrypt = ({ str, hash }: matchEncryptParams): boolean => {
+  return bcrypt.compareSync(str, hash);
 };

@@ -34,7 +34,6 @@ const registerUser = async (req: Request, res: Response) => {
   }
 };
 
-
 const getUser = async (req: Request, res: Response) => {
   try {
     const { username } = req.body;

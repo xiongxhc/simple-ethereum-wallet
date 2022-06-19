@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "ts-mocha src/test/**/*.ts --recursive",
+    "test": "find ./src/test -name '*test.ts' | xargs ts-mocha -R spec",
     "dev": "npx ts-node src/index.ts",
     "nodemon": "npx nodemon src/index.ts",
     "prettier": "npx prettier --write .",
@@ -29,7 +29,7 @@
     "mocha": "10.0.0",
     "pg": "8.7.3",
     "sequelize": "6.20.1",
-    "sqlite3": "^5.0.8"
+    "sqlite3": "5.0.8"
   },
   "devDependencies": {
     "@types/bcrypt": "5.0.0",
