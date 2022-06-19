@@ -34,6 +34,30 @@ const registerUser = async (req: Request, res: Response) => {
   }
 };
 
+
+const getUser = async (req: Request, res: Response) => {
+  try {
+    const { username } = req.body;
+
+    const user = await database.USER_TABLE.findOne({
+      where: { username },
+    });
+    if (user) {
+      const { eth_address } = user as any;
+      return res.status(200).json({ eth_address });
+    }
+    throw new APIError(`Fail to find user: ${username}`);
+  } catch (err) {
+    if (err instanceof APIError) {
+      return res.status(500).json({
+        message: err.message,
+      });
+    }
+    return unhandledException(err, req, res);
+  }
+};
+
 export default {
+  get: getUser,
   post: registerUser,
 };

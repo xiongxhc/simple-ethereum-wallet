@@ -7,6 +7,7 @@ export const routes = (app: Express) => {
 
   router.get("/", healthCheck.get);
 
+  router.get("/user", user.get);
   router.post("/user", user.post);
 
   app.use("/api", router);
