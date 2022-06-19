@@ -45,3 +45,11 @@ curl -X POST -H "Content-Type: application/json" \
     -d '{"username": "chris", "password": "123456"}' \
     http://localhost:3000/api/user
 ```
+
+**GET** Get User Ethereum Address
+
+```sh
+curl -X GET -H "Content-Type: application/json" \
+    -d '{"username": "chris"}' \
+    http://localhost:3000/api/user
+```
