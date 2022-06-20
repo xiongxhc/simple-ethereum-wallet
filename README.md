@@ -59,7 +59,7 @@ curl -X GET -H "Content-Type: application/json" \
 ERC Token Support: **USDT**, **USDC**, **WBTC**
 
 ```sh
-curl -X POST -H "Content-Type: application/json" \
+curl -X GET -H "Content-Type: application/json" \
     -d '{"eth_address": "ETH_ADDRESS", "erc_token": "USDT"}' \
     http://localhost:3000/api/user/balance
 ```
