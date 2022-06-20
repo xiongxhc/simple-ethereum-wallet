@@ -19,5 +19,5 @@ const retrieveUserBalance = async (req: Request, res: Response) => {
 };
 
 export default {
-  post: retrieveUserBalance,
+  get: retrieveUserBalance,
 };

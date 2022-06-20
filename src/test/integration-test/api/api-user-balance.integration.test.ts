@@ -10,7 +10,11 @@ describe("Test get user balance", () => {
       eth_address: "0x7eEcfFb050FbB238b5b27dE4100e30FA613d7B71",
       erc_token: assetNames.USDT,
     };
-    const response = await axios.post(url, data);
+    const response = await axios({
+      url,
+      method: "GET",
+      data,
+    });
     expect(response.data).to.deep.equal({
       eth_balance: "0.101736368537265892",
       token_balance: "6",
@@ -19,12 +23,16 @@ describe("Test get user balance", () => {
 
   it("Cannot get ethereum balance when invalid address", async () => {
     const data = {
-      eth_address: "fake-eth-address",
+      eth_address: "fake-ethereum-address-up-to-42-charactoors",
       erc_token: assetNames.USDT,
     };
-    await axios.post(url, data).catch((err) => {
+    await axios({
+      url,
+      method: "GET",
+      data,
+    }).catch((err) => {
       expect(err.response.data).to.deep.equal({
-        message: "Invalid ethererum address: fake-eth-address",
+        message: "Invalid ethererum address: fake-ethereum-address-up-to-42-charactoors",
       });
     });
   });
@@ -44,7 +52,43 @@ describe("Test get user balance", () => {
       eth_address,
       erc_token: assetNames.USDT,
     };
-    const response = await axios.post(url, getBalanceData);
-    expect(response.data).to.deep.equal({ eth_balance: "0", token_balance: "0" });
+    const response = await await axios({
+      url,
+      method: "GET",
+      data: getBalanceData,
+    });
+    expect(response.data).to.deep.equal({
+      eth_balance: "0",
+      token_balance: "0",
+    });
+  });
+
+  it("Can throw validation error", async () => {
+    const data = {
+      eth_address: "fake-ethereum-address",
+      erc_token: "ABCD",
+    };
+    await axios({
+      url,
+      method: "GET",
+      data,
+    }).catch((err) => {
+      expect(err.response.data).to.deep.equal({
+        errors: [
+          {
+            msg: "Invalid value",
+            location: "body",
+            param: "eth_address",
+            value: "fake-ethereum-address",
+          },
+          {
+            msg: "Invalid value",
+            location: "body",
+            param: "erc_token",
+            value: "ABCD",
+          },
+        ],
+      });
+    });
   });
 });
