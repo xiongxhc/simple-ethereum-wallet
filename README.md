@@ -54,10 +54,12 @@ curl -X GET -H "Content-Type: application/json" \
     http://localhost:3000/api/user
 ```
 
-**GET** Get Ethereum and Token Balance
+**POST** Get Ethereum and Token Balance
+
+ERC Token Support: **USDT**, **USDC**, **WBTC**
 
 ```sh
 curl -X POST -H "Content-Type: application/json" \
-    -d '{"eth_address": "0x7eEcfFb050FbB238b5b27dE4100e30FA613d7B71", "erc_token": "USDT"}' \
+    -d '{"eth_address": "ETH_ADDRESS", "erc_token": "USDT"}' \
     http://localhost:3000/api/user/balance
 ```
