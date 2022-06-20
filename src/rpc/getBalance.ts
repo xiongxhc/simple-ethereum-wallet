@@ -28,6 +28,6 @@ export const getEthererumBalance = async (
 };
 
 export const getTokenBalance = async (eth_address: string): Promise<string> => {
-  // TODO: Get token balance
+  
   return "NOT IMPLEMENTED";
 };
