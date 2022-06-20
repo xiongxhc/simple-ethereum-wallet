@@ -6,27 +6,27 @@ import { url as baseUrl } from "../const/url";
 import { converNumberToDecimal, convertWeiToEther } from "../utils/conversion";
 import { GetBalanceError } from "../utils/error";
 
-interface RetrieveBalanceParams {
+interface GetBalanceParams {
   eth_address: string;
   erc_token: string;
 }
 
-interface RetrieveBalanceValues {
+interface GetBalanceValues {
   eth_balance: string;
   token_balance: string;
 }
 
-export const retrieveBalance = async ({
+export const getBalance = async ({
   eth_address,
   erc_token,
-}: RetrieveBalanceParams): Promise<RetrieveBalanceValues> => {
+}: GetBalanceParams): Promise<GetBalanceValues> => {
   if (!ethers.utils.isAddress(eth_address)) {
     throw new GetBalanceError(`Invalid ethererum address: ${eth_address}`);
   }
 
   const url = `${baseUrl.ALCHEMY_BASE_URL}/${env.ALCHEMY_API_KEY}`;
 
-  // Initialize an alchemy-web3 instance:
+  // Initialize an alchemy-web3 instance
   const web3 = createAlchemyWeb3(url);
 
   // Query the blockchain
