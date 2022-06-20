@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/xiongxhc/simple-ethereum-wallet#readme",
   "dependencies": {
+    "@alch/alchemy-web3": "^1.4.2",
     "axios": "0.27.2",
     "bcrypt": "5.0.1",
+    "bignumber.js": "^9.0.2",
     "chai": "4.3.6",
     "cors": "2.8.5",
     "crypto": "1.0.1",

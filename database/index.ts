@@ -6,5 +6,5 @@ export const database = {
   sequelize,
   memorySequelize,
   USER_TABLE,
-  ETH_ADDRESS_TABLE
+  ETH_ADDRESS_TABLE,
 };

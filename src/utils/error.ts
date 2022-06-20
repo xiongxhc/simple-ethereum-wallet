@@ -19,3 +19,9 @@ export class CreateEthereumAddressError extends BaseError {
     super(name);
   }
 }
+
+export class GetBalanceError extends BaseError {
+  constructor(name = "GetBalanceError") {
+    super(name);
+  }
+}

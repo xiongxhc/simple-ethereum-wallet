@@ -53,3 +53,11 @@ curl -X GET -H "Content-Type: application/json" \
     -d '{"username": "chris"}' \
     http://localhost:3000/api/user
 ```
+
+**GET** Get Ethereum and Token Balance
+
+```sh
+curl -X POST -H "Content-Type: application/json" \
+    -d '{"eth_address": "0x7eEcfFb050FbB238b5b27dE4100e30FA613d7B71", "erc_token": "USDT"}' \
+    http://localhost:3000/api/user/balance
+```
