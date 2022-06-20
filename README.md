@@ -54,7 +54,7 @@ curl -X GET -H "Content-Type: application/json" \
     http://localhost:3000/api/user
 ```
 
-**POST** Get Ethereum and Token Balance
+**GET** Get Ethereum and Token Balance
 
 ERC Token Support: **USDT**, **USDC**, **WBTC**
 
