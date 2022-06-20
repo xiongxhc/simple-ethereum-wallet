@@ -9,7 +9,13 @@ class BaseError extends Error {
 }
 
 export class APIError extends BaseError {
-  constructor(name = "DatabaseInsertError") {
+  constructor(name = "APIError") {
+    super(name);
+  }
+}
+
+export class CreateEthereumAddressError extends BaseError {
+  constructor(name = "CreateEthereumAddressError") {
     super(name);
   }
 }

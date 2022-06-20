@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, UUID, UUIDV4 } from "sequelize";
-const sequelize = new Sequelize("sqlite::memory:");
+import { memorySequelize } from "../sequelize";
 
-export const USER_TABLE = sequelize.define("users", {
+export const USER_TABLE = memorySequelize.define("users", {
   id: {
     type: UUID,
     defaultValue: UUIDV4,

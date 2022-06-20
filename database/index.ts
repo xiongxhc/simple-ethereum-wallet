@@ -1,18 +1,10 @@
-import { Sequelize, Dialect } from "sequelize";
-import { databseConfig } from "../config/database.config";
+import { sequelize, memorySequelize } from "./sequelize";
 import { USER_TABLE } from "./model/user.model";
-
-const sequelize = new Sequelize(
-  databseConfig.database,
-  databseConfig.username,
-  databseConfig.password,
-  {
-    host: databseConfig.host,
-    dialect: databseConfig.dialect as Dialect,
-  }
-);
+import { ETH_ADDRESS_TABLE } from "./model/eth-address.model";
 
 export const database = {
   sequelize,
+  memorySequelize,
   USER_TABLE,
+  ETH_ADDRESS_TABLE
 };

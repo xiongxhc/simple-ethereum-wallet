@@ -11,10 +11,9 @@ app.use(express.json());
 
 // Sequelize
 try {
-  database.sequelize.sync();
-  database.sequelize.authenticate();
-  console.log(">>>>> Database connection has been established successfully");
+  // Currently using in memory database
   database.USER_TABLE.sync();
+  database.ETH_ADDRESS_TABLE.sync();
   console.log(">>>>> Tables created successfully");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
