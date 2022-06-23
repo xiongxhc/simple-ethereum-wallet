@@ -5,9 +5,17 @@ import { APIError, CreateEthereumAddressError } from "../utils/error";
 import { createEthereumAddress } from "../utils/ethereum";
 import { unhandledException } from "../utils/unhandledException";
 
+interface RegisterUserParams {
+  username: string;
+  password: string;
+}
+interface GetUserParams {
+  username: string;
+}
+
 const registerUser = async (req: Request, res: Response) => {
   try {
-    const { username, password } = req.body;
+    const { username, password }: RegisterUserParams = req.body;
 
     const eth_address = await createEthereumAddress();
 
@@ -40,13 +48,13 @@ const registerUser = async (req: Request, res: Response) => {
 
 const getUser = async (req: Request, res: Response) => {
   try {
-    const { username } = req.body;
+    const { username }: GetUserParams = req.body;
 
-    const user = await database.USER_TABLE.findOne({
+    const user: any = await database.USER_TABLE.findOne({
       where: { username },
     });
     if (user) {
-      const { eth_address } = user as any;
+      const { eth_address } = user;
       return res.status(200).json({ eth_address });
     }
     throw new APIError(`Fail to find user: ${username}`);

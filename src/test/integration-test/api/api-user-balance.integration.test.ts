@@ -32,7 +32,8 @@ describe("Test get user balance", () => {
       data,
     }).catch((err) => {
       expect(err.response.data).to.deep.equal({
-        message: "Invalid ethererum address: fake-ethereum-address-up-to-42-charactoors",
+        message:
+          "Invalid ethererum address: fake-ethereum-address-up-to-42-charactoors",
       });
     });
   });

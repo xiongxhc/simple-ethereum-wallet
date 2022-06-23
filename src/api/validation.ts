@@ -1,10 +1,9 @@
-import { Request } from "express";
-import { validationResult, body } from "express-validator";
-import { request } from "http";
+import { Request, Response } from "express";
+import { validationResult, body, ValidationError } from "express-validator";
 import { assets } from "../const/assets";
 
 const validate = (validations) => {
-  return async (req, res, next) => {
+  return async (req: Request, res: Response, next: () => any) => {
     await Promise.all(validations.map((validation) => validation.run(req)));
 
     const errors = validationResult(req);
@@ -29,7 +28,9 @@ export const apiGetUserValidate = validate([
 
 export const apiGetUserBalanceValidate = validate([
   body("eth_address").isString().isLength({ max: 42, min: 42 }),
-  body("erc_token").isString().custom((value)=>{
-    return assets.find((i) => i.name === value);
-  }),
+  body("erc_token")
+    .isString()
+    .custom((value) => {
+      return assets.find((i) => i.name === value);
+    }),
 ]);
