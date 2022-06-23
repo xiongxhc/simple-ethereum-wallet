@@ -5,21 +5,15 @@ import { env } from "../const/env";
 import { url as baseUrl } from "../const/url";
 import { converNumberToDecimal, convertWeiToEther } from "../utils/conversion";
 import { GetBalanceError } from "../utils/error";
-
-interface GetBalanceParams {
-  eth_address: string;
-  erc_token: string;
-}
-
 interface GetBalanceValues {
   eth_balance: string;
   token_balance: string;
 }
 
-export const getBalance = async ({
+export const getBalance = async (
   eth_address,
   erc_token,
-}: GetBalanceParams): Promise<GetBalanceValues> => {
+): Promise<GetBalanceValues> => {
   if (!ethers.utils.isAddress(eth_address)) {
     throw new GetBalanceError(`Invalid ethererum address: ${eth_address}`);
   }

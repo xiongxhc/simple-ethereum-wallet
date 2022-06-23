@@ -12,13 +12,7 @@ describe("Test user related endpoints", () => {
     const registerUser = await axios.post(url, data);
     expect(registerUser.data).to.include({ username: randomUserName });
 
-    const getUser = await axios({
-      url,
-      method: "GET",
-      data: {
-        username: randomUserName,
-      },
-    });
+    const getUser = await axios.get(`${url}?username=${randomUserName}`);
     expect(getUser.data).to.deep.equal({
       eth_address: getUser.data.eth_address,
     });
@@ -47,35 +41,15 @@ describe("Test user related endpoints", () => {
   });
 
   it("Can throw validation error: GET", async () => {
-    await axios({
-      url,
-      method: "GET",
-      data: {
-        username: 123,
-      },
-    }).catch((err) => {
-      expect(err.response.status).to.deep.equal(422);
+    await axios.get(url).catch((err) => {
       expect(err.response.data).to.deep.equal({
-        errors: [
-          {
-            msg: "Invalid value",
-            param: "username",
-            location: "body",
-            value: 123,
-          },
-        ],
+        message: "Fail to find user: undefined"
       });
     });
   });
 
   it("Can throw error when user don't exist", async () => {
-    await axios({
-      url,
-      method: "GET",
-      data: {
-        username: "chris",
-      },
-    }).catch((err) => {
+    await axios.get(`${url}?username=chris`).catch((err) => {
       expect(err.response.data).to.deep.equal({
         message: "Fail to find user: chris",
       });

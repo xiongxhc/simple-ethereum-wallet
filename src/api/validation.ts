@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { validationResult, body, ValidationError } from "express-validator";
+import { validationResult, body, query } from "express-validator";
 import { assets } from "../const/assets";
 
 const validate = (validations) => {
@@ -23,14 +23,13 @@ export const apiRegisterUserValidate = validate([
 ]);
 
 export const apiGetUserValidate = validate([
-  body("username").isString().isLength({ max: 50 }),
+  query("username").isLength({ max: 50 }),
 ]);
 
 export const apiGetUserBalanceValidate = validate([
-  body("eth_address").isString().isLength({ max: 42, min: 42 }),
-  body("erc_token")
-    .isString()
-    .custom((value) => {
-      return assets.find((i) => i.name === value);
+  query("eth_address").isLength({ max: 42, min: 42 }),
+  query("erc_token")
+    .custom((token) => {
+      return assets.find((i) => i.name === token);
     }),
 ]);

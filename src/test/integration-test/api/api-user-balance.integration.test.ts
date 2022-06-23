@@ -6,15 +6,11 @@ import { SECOND_IN_MS } from "../../../const/time";
 describe("Test get user balance", () => {
   const url = "http://localhost:3000/api/user/balance";
   it("Can get ethereum balance", async () => {
-    const data = {
+    const query = {
       eth_address: "0x7eEcfFb050FbB238b5b27dE4100e30FA613d7B71",
       erc_token: assetNames.USDT,
     };
-    const response = await axios({
-      url,
-      method: "GET",
-      data,
-    });
+    const response = await axios.get(`${url}?eth_address=${query.eth_address}&erc_token=${query.erc_token}`)
     expect(response.data).to.deep.equal({
       eth_balance: "0.101736368537265892",
       token_balance: "6",
@@ -22,15 +18,11 @@ describe("Test get user balance", () => {
   });
 
   it("Cannot get ethereum balance when invalid address", async () => {
-    const data = {
+    const query = {
       eth_address: "fake-ethereum-address-up-to-42-charactoors",
       erc_token: assetNames.USDT,
     };
-    await axios({
-      url,
-      method: "GET",
-      data,
-    }).catch((err) => {
+    await axios.get(`${url}?eth_address=${query.eth_address}&erc_token=${query.erc_token}`).catch((err) => {
       expect(err.response.data).to.deep.equal({
         message:
           "Invalid ethererum address: fake-ethereum-address-up-to-42-charactoors",
@@ -49,15 +41,11 @@ describe("Test get user balance", () => {
     expect(registerUser.data).to.include({ username: randomUserName });
 
     const { eth_address } = registerUser.data;
-    const getBalanceData = {
+    const getBalanceQuery = {
       eth_address,
       erc_token: assetNames.USDT,
     };
-    const response = await await axios({
-      url,
-      method: "GET",
-      data: getBalanceData,
-    });
+    const response = await await axios.get(`${url}?eth_address=${getBalanceQuery.eth_address}&erc_token=${getBalanceQuery.erc_token}`)
     expect(response.data).to.deep.equal({
       eth_balance: "0",
       token_balance: "0",
@@ -65,26 +53,22 @@ describe("Test get user balance", () => {
   });
 
   it("Can throw validation error", async () => {
-    const data = {
+    const query = {
       eth_address: "fake-ethereum-address",
       erc_token: "ABCD",
     };
-    await axios({
-      url,
-      method: "GET",
-      data,
-    }).catch((err) => {
+    await axios.get(`${url}?eth_address=${query.eth_address}&erc_token=${query.erc_token}`).catch((err) => {
       expect(err.response.data).to.deep.equal({
         errors: [
           {
             msg: "Invalid value",
-            location: "body",
+            location: "query",
             param: "eth_address",
             value: "fake-ethereum-address",
           },
           {
             msg: "Invalid value",
-            location: "body",
+            location: "query",
             param: "erc_token",
             value: "ABCD",
           },

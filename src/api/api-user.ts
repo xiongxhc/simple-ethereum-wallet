@@ -9,9 +9,6 @@ interface RegisterUserParams {
   username: string;
   password: string;
 }
-interface GetUserParams {
-  username: string;
-}
 
 const registerUser = async (req: Request, res: Response) => {
   try {
@@ -48,16 +45,20 @@ const registerUser = async (req: Request, res: Response) => {
 
 const getUser = async (req: Request, res: Response) => {
   try {
-    const { username }: GetUserParams = req.body;
+    const { username } = req.query;
+
+    if(!username) {
+      throw new APIError(`Fail to find user: ${username}`);
+    }
 
     const user: any = await database.USER_TABLE.findOne({
       where: { username },
     });
-    if (user) {
-      const { eth_address } = user;
-      return res.status(200).json({ eth_address });
+    if (!user) {
+      throw new APIError(`Fail to find user: ${username}`);
     }
-    throw new APIError(`Fail to find user: ${username}`);
+    const { eth_address } = user;
+      return res.status(200).json({ eth_address });
   } catch (err) {
     if (err instanceof APIError) {
       return res.status(500).json({
